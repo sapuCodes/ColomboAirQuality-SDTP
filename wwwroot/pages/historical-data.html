@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Air Quality Data</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- JS PDF Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-container {
+            padding: 40px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            display: none;
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .table th, .table td {
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .historical-section {
+            margin-top: 40px;
+        }
+
+        .historical-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+     <!-- navbar -->
+     <header>
+        <nav>
+            <div class="logo">Colombo Air Quality</div>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="../pages/alert.html"><i class="fas fa-exclamation-circle"></i>Alerts</a></li>
+                <li><a href="../admin/adminlogin.html"><i class="fas fa-lock"></i>Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container content-container">
+        <h1 class="text-center">Real-time Air Quality Data</h1>
+
+        <div class="table-responsive position-relative">
+            <div class="d-flex justify-content-end mb-3">
+            </div>
+            <table class="table table-striped table-bordered data-table">
+                <thead class="table-light">
+                    <tr>
+                        <th>Location</th>
+                        <th>CO2 (ppm)</th>
+                        <th>PM25</th>
+                        <th>Temperature (°C)</th>
+                        <th>Humidity (%)</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                    <!-- Data rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="loadingSpinner" class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i> Loading... Please wait..
+        </div>
+
+        <!-- Historical Data Section -->
+        <div class="historical-section">
+            <h2 class="text-center">Historical Data</h2>
+            
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered historical-table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Station</th>
+                            <th>Timestamp</th>
+                            <th>AQI</th>
+                            <th>PM25</th>
+                            <th>CO</th>
+                            <th>Temp (°C)</th>
+                            <th>Humidity (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historicalDataTable">
+                        <!-- Data will appear here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/SDT frontend/assets/js/loadNavbar.js"></script> 
+    <script src="/SDT frontend/assets/js/historical-data.js"></script>
+
+    <script>
+        // Simulated data 
+        const simulatedData = [
+            {
+                StationName: "Tissamaharama",
+                CO: 44.0,
+                PM25: 44.0,
+                Temperature: 44.0,
+                Humidity: 44.0,
+                LastUpdated: "2025-04-27 21:53:30"
+            },
+            {
+                StationName: "Colombo 7",
+                CO: 23.0,
+                PM25: 50.0,
+                Temperature: 33.0,
+                Humidity: 31.0,
+                LastUpdated: "2025-04-27 21:52:51"
+            },
+            {
+                StationName: "Gampaha",
+                CO: 11.0,
+                PM25: 44.0,
+                Temperature: 32.0,
+                Humidity: 33.0,
+                LastUpdated: "2025-04-27 21:52:16"
+            },
+            {
+                StationName: "NSBM Green Uni",
+                CO: 1.4,
+                PM25: 1.1,
+                Temperature: 35.0,
+                Humidity: 1.4,
+                LastUpdated: "2025-04-27 21:49:00"
+            }
+        ];
+
+        // Simulate data fetching
+        function simulateDataLoading() {
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            // Simulate delay (2 seconds)
+            setTimeout(() => {
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+
+                // Populate the table with simulated data
+                const dataTable = document.getElementById('dataTable');
+                simulatedData.forEach(data => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${data.StationName}</td>
+                        <td>${data.CO}</td>
+                        <td>${data.PM25}</td>
+                        <td>${data.Temperature}</td>
+                        <td>${data.Humidity}</td>
+                        <td>${data.LastUpdated}</td>
+                    `;
+                    dataTable.appendChild(row);
+                });
+            }, 2000); // 2-second delay to simulate fetching data
+        }
+
+        // Call simulateDataLoading to load data when the page loads
+        window.onload = simulateDataLoading;
+    </script>
+</body>
+</html>

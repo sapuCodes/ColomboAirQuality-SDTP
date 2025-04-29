@@ -1,0 +1,49 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.welcome-text {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btn-sm {
+    margin: 0 3px;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    
+    .welcome-text {
+        font-size: 1.5rem;
+    }

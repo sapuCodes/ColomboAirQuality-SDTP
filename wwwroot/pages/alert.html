@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colombo Air Quality Alerts</title>
+    <link rel="icon" type="image/x-icon" href="/SDT frontend/assets/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/alert.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+</head>
+<body style="background-color:powderblue;">
+
+    <!-- navbar -->
+    <header>
+        <nav>
+            <div class="logo">Colombo Air Quality</div>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="alert.html"><i class="fas fa-exclamation-circle"></i>Alerts</a></li>
+                <li><a href="../admin/adminlogin.html"><i class="fas fa-lock"></i>Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <div class="navbar-spacer"></div>
+
+    <div class="alert-container">
+        <div class="alert-header-section">
+            <h1><i class="fas fa-exclamation-triangle"></i> Colombo Air Quality Alerts</h1>
+            <div class="alert-ranges">
+                <span class="range-label unhealthy">Unhealthy (101-150)</span>
+                <span class="range-label very-unhealthy">Very Unhealthy (151-200)</span>
+                <span class="range-label hazardous">Hazardous (201+)</span>
+            </div>
+        </div>
+
+        <div class="alert-table-header">
+            <div class="header-item location">Location</div>
+            <div class="header-item aqi">AQI</div>
+            <div class="header-item level">Level</div>
+            <div class="header-item pollutant">Main Pollutant</div>
+            <div class="header-item time">Updated</div>
+        </div>
+        
+        <div id="alerts-list" class="alerts-list"></div>
+        
+        <div id="no-alerts" class="no-alerts">
+            <i class="fas fa-check-circle"></i>
+            <p>No unhealthy air quality found currently</p>
+            <small>All Colombo stations reporting AQI ≤ 100</small>
+        </div>
+    </div>
+
+    <script src="../assets/js/alert.js"></script>
+
+    
+</body>
+ <!-- Footer section -->
+<footer id="footer" class="footer-section">
+    <div class="section-content">
+        <p class="copyright-text">© ColomboAirQuality 2025</p>
+
+
+        <p class="policy-text">
+            <a href="privacy-policy.html" class="policy-link" id="privacy-link">Privacy policy</a>
+            <span class="separator">•</span>
+            <a href="contactus.html" class="policy-link" id="contact-link">Contact Us</a>
+            <span class="separator">•</span>
+            <a href="T&S.html" class="policy-link" id="terms-link">Terms & Conditions</a>
+        </p>
+    </div>
+</footer>
+
+
+</html>

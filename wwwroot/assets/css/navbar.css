@@ -1,0 +1,91 @@
+:root {
+    --header-gradient: linear-gradient(90deg, rgb(240, 240, 18) 0%, rgb(25, 28, 202) 100%);
+    --hover-color: rgba(95, 240, 148, 0.15);
+    --accent-color: rgb(8, 45, 72);
+    --link-color: rgb(81, 234, 21);
+    --link-hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background: var(--header-gradient);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+    background-size: 20px 20px;
+    opacity: 0.05;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--hover-color);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+}
+
+nav a:hover {
+    background: var(--link-hover-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav a i {
+    margin-right: 0.7rem;
+    font-size: 1.2rem;
+}
+
+nav a:active {
+    transform: translateY(0);
+}

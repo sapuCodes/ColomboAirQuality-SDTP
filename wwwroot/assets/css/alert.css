@@ -1,0 +1,274 @@
+body {
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-spacer {
+    height: 20px;
+}
+
+.alert-container {
+    max-width: 1200px;
+    margin: 60px auto 2rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.alert-header-section {
+    margin-bottom: 2rem;
+}
+
+.alert-header-section h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0 0 1rem;
+    color: #34495e;
+}
+
+.alert-header-section h1 i {
+    color: #e74c3c;
+}
+
+.alert-ranges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.range-label {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+.unhealthy {
+    background: #ffa500;
+    color: #fff;
+}
+
+.very-unhealthy {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.hazardous {
+    background: #8e44ad;
+    color: #fff;
+}
+
+.alert-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    background: #f1f2f6;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: #495057;
+    font-weight: 600;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.header-item {
+    text-align: left;
+}
+
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.alert-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+    align-items: center;
+    transition: 0.2s ease all;
+}
+
+.alert-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert-location {
+    font-weight: 500;
+}
+
+.alert-aqi {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.alert-level {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-block;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.level-unhealthy {
+    background: #ffa500;
+    color: #fff;
+}
+
+.level-veryunhealthy {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.level-hazardous {
+    background: #8e44ad;
+    color: #fff;
+}
+
+.alert-pollutant {
+    font-size: 0.95rem;
+}
+
+.alert-time {
+    color: #7b8a8b;
+    font-size: 0.9rem;
+}
+
+/* No Alerts Section */
+.no-alerts {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #f1f2f6;
+    border-radius: 8px;
+    padding: 3rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.no-alerts i {
+    font-size: 3rem;
+    color: #2ecc71;
+    margin-bottom: 1rem;
+}
+
+.no-alerts p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #34495e;
+    margin: 0 0 0.5rem;
+}
+
+.no-alerts small {
+    color: #7b8a8b;
+    font-size: 0.9rem;
+}
+
+/* Status Message Styles */
+.status-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.status-message.loading {
+    background: #eaf4fb;
+    color: #3498db;
+}
+
+.status-message.error {
+    background: #ffe5e5;
+    color: #e74c3c;
+}
+
+.status-message.warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-message button {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .alert-container {
+        padding: 1rem;
+        margin-top: 30px;
+    }
+
+    .alert-table-header {
+        display: none;
+    }
+
+    .alert-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1.2rem;
+    }
+
+    .alert-location::before {
+        content: "Location: ";
+        color: #7b8a8b;
+        font-weight: normal;
+    }
+
+    .alert-aqi::before {
+        content: "AQI: ";
+        color: #7b8a8b;
+        font-weight: normal;
+    }
+
+    .alert-level::before {
+        content: "Level: ";
+        color: #7b8a8b;
+        font-weight: normal;
+    }
+
+    .alert-pollutant::before {
+        content: "Pollutant: ";
+        color: #7b8a8b;
+        font-weight: normal;
+    }
+
+    .alert-time::before {
+        content: "Updated: ";
+        color: #7b8a8b;
+        font-weight: normal;
+    }
+
+    .alert-ranges {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .no-alerts {
+        padding: 2rem 1rem;
+    }
+}
